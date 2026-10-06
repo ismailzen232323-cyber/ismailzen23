@@ -1,1 +1,342 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Allays-LAN | Kabel LAN Cross Over</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:#f4f8fc;color:#172033;line-height:1.6}
 
+/* NAVBAR */
+nav{position:fixed;top:0;width:100%;z-index:1000;background:rgba(10,28,52,.96);backdrop-filter:blur(10px);box-shadow:0 4px 20px rgba(0,0,0,.15)}
+.nav-container{max-width:1200px;margin:auto;padding:16px 25px;display:flex;align-items:center;justify-content:space-between}
+.logo{color:#fff;font-size:25px;font-weight:800;letter-spacing:1px}
+.logo span{color:#31c7ed}
+.nav-menu{display:flex;list-style:none;gap:25px}
+.nav-menu a{color:#fff;text-decoration:none;font-size:14px;font-weight:500;transition:.3s}
+.nav-menu a:hover{color:#31c7ed}
+
+/* HERO */
+.hero{min-height:100vh;padding:150px 25px 80px;display:flex;align-items:center;color:#fff;
+background:radial-gradient(circle at 80% 20%,rgba(49,199,237,.25),transparent 30%),linear-gradient(135deg,#071a30,#0d3457)}
+.hero-container{max-width:1200px;width:100%;margin:auto;display:grid;grid-template-columns:1.2fr .8fr;align-items:center;gap:60px}
+.hero h1{font-size:clamp(50px,8vw,90px);line-height:1;margin-bottom:20px;letter-spacing:-3px}
+.hero h1 span{color:#31c7ed}
+.hero h2{font-size:25px;margin-bottom:18px}
+.hero p{max-width:650px;color:#d4e4f2;font-size:16px}
+.hero-buttons{margin-top:30px;display:flex;gap:15px;flex-wrap:wrap}
+.btn{display:inline-block;padding:13px 22px;border-radius:10px;text-decoration:none;font-weight:600;cursor:pointer;border:none;transition:.3s}
+.btn-primary{background:#31c7ed;color:#082039}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(49,199,237,.3)}
+.btn-outline{border:1px solid #31c7ed;color:#fff;background:transparent}
+.btn-outline:hover{background:#31c7ed;color:#082039}
+.lan-card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);padding:45px 25px;border-radius:25px;text-align:center;backdrop-filter:blur(10px)}
+.lan-icon{font-size:110px;margin-bottom:20px}
+.lan-card h3{font-size:25px;margin-bottom:10px}
+.lan-card p{color:#c7d8e8}
+
+/* GENERAL */
+section{padding:90px 25px}
+.container{max-width:1100px;margin:auto}
+.section-title{text-align:center;margin-bottom:45px}
+.section-title h2{font-size:35px;color:#0a2b4d;margin-bottom:10px}
+.section-title p{color:#6c7a89}
+
+/* PENGANTAR */
+.intro-card{background:#fff;padding:40px;border-radius:20px;box-shadow:0 10px 35px rgba(20,50,80,.08);border-left:5px solid #31c7ed}
+.intro-card p{color:#586574;text-align:justify}
+
+/* IDENTITAS */
+#identitas,#video{background:#eaf3f9}
+.identity-card{max-width:700px;margin:auto;background:#fff;border-radius:20px;padding:35px;box-shadow:0 10px 35px rgba(20,50,80,.08)}
+.identity-header{text-align:center;margin-bottom:30px}
+.profile-icon{width:85px;height:85px;margin:0 auto 15px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:40px;background:#dff7fc}
+.identity-header h3{color:#0b3154}
+.identity-list{display:grid;gap:12px}
+.identity-item{display:flex;justify-content:space-between;gap:20px;padding:13px 15px;background:#f6f9fb;border-radius:10px}
+.identity-item strong{color:#123b5e}
+.identity-item span{color:#667482;text-align:right}
+
+/* POWERPOINT */
+.upload-card{background:#fff;padding:30px;border-radius:20px;box-shadow:0 10px 35px rgba(20,50,80,.08)}
+.upload-area{border:2px dashed #9bb5c9;border-radius:15px;padding:30px;text-align:center;background:#f8fbfd;margin-bottom:25px}
+.upload-area .upload-icon{font-size:45px;margin-bottom:8px}
+.upload-area h3{color:#123b5e;margin-bottom:5px}
+.upload-area p{color:#758391;font-size:14px;margin-bottom:18px}
+input[type="file"]{display:none}
+.file-label{display:inline-block;padding:11px 20px;background:#0d426b;color:#fff;border-radius:8px;cursor:pointer;font-weight:600;transition:.3s}
+.file-label:hover{background:#31aeca}
+.file-name{margin-top:15px;font-size:14px;color:#536271}
+.file-name a{color:#0d426b;font-weight:600}
+.preview-box{width:100%;min-height:500px;border-radius:15px;overflow:hidden;background:#172033;display:flex;align-items:center;justify-content:center}
+.preview-box iframe{width:100%;height:600px;border:none}
+.empty-preview{color:#b9c4ce;text-align:center;padding:30px}
+
+/* VIDEO */
+.video-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:25px}
+.video-card{background:#fff;padding:25px;border-radius:20px;box-shadow:0 10px 35px rgba(20,50,80,.08)}
+.video-card h3{color:#103856;margin-bottom:8px}
+.video-card>p{color:#71808d;font-size:14px;margin-bottom:20px}
+.video-preview{width:100%;aspect-ratio:16/9;background:#111c29;border-radius:12px;overflow:hidden}
+.video-preview video{width:100%;height:100%;object-fit:contain}
+
+/* INFORMASI */
+.info-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.info-card{background:#fff;padding:25px 15px;text-align:center;border-radius:15px;box-shadow:0 8px 25px rgba(20,50,80,.07);transition:.3s}
+.info-card:hover{transform:translateY(-5px)}
+.info-card .icon{font-size:35px;margin-bottom:10px}
+.info-card h4{color:#123b5e;margin-bottom:5px}
+.info-card p{color:#73808d;font-size:14px}
+
+/* FOOTER */
+footer{background:#071a30;color:#fff;text-align:center;padding:35px 20px}
+footer strong{color:#31c7ed}
+footer p{color:#aebdca;font-size:14px;margin-top:6px}
+
+/* TOP BUTTON */
+#topBtn{position:fixed;bottom:25px;right:25px;width:45px;height:45px;border:none;border-radius:50%;background:#31c7ed;color:#082039;font-size:20px;font-weight:bold;cursor:pointer;display:none;z-index:999;box-shadow:0 5px 20px rgba(0,0,0,.2)}
+
+/* RESPONSIVE */
+@media(max-width:850px){
+.hero-container{grid-template-columns:1fr;text-align:center}
+.hero p{margin:auto}
+.hero-buttons{justify-content:center}
+.video-grid{grid-template-columns:1fr}
+.info-grid{grid-template-columns:repeat(2,1fr)}
+.nav-menu{gap:12px}
+.nav-menu a{font-size:12px}
+}
+@media(max-width:600px){
+.nav-container{flex-direction:column;gap:10px}
+.nav-menu{flex-wrap:wrap;justify-content:center}
+.hero{padding-top:180px}
+.hero h1{font-size:55px}
+.identity-item{flex-direction:column;gap:4px}
+.identity-item span{text-align:left}
+.info-grid{grid-template-columns:1fr}
+.intro-card,.upload-card,.video-card,.identity-card{padding:20px}
+.preview-box{min-height:300px}
+.preview-box iframe{height:400px}
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-container">
+    <div class="logo">Allays<span>-LAN</span></div>
+    <ul class="nav-menu">
+      <li><a href="#dashboard">Dashboard</a></li>
+      <li><a href="#pengantar">Pengantar</a></li>
+      <li><a href="#identitas">Identitas</a></li>
+      <li><a href="#powerpoint">PowerPoint</a></li>
+      <li><a href="#video">Video</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="dashboard">
+  <div class="hero-container">
+    <div>
+      <h1>Allays<span>-LAN</span></h1>
+      <h2>Media Dokumentasi Kabel LAN Cross Over</h2>
+      <p>Website ini dibuat sebagai media untuk menyajikan materi, presentasi, dan dokumentasi proses pembuatan serta pengujian kabel LAN Cross Over.</p>
+      <div class="hero-buttons">
+        <a href="#powerpoint" class="btn btn-primary">📊 Lihat PowerPoint</a>
+        <a href="#video" class="btn btn-outline">🎥 Lihat Dokumentasi</a>
+      </div>
+    </div>
+    <div class="lan-card">
+      <div class="lan-icon">🔌</div>
+      <h3>LAN Cross Over</h3>
+      <p>RJ45 • Kabel UTP • T568A &amp; T568B</p>
+    </div>
+  </div>
+</section>
+
+<!-- KATA PENGANTAR -->
+<section id="pengantar">
+  <div class="container">
+    <div class="section-title">
+      <h2>Kata Pengantar</h2>
+      <p>Pengantar mengenai website Allays-LAN</p>
+    </div>
+    <div class="intro-card">
+      <p>Puji syukur kehadirat Tuhan Yang Maha Esa karena website Allays-LAN ini dapat dibuat sebagai media untuk menyajikan materi dan dokumentasi mengenai pembuatan kabel LAN Cross Over. Website ini berisi materi dalam bentuk PowerPoint serta dokumentasi video proses pembuatan dan pengujian kabel LAN Cross Over. Semoga website ini dapat membantu dalam memahami langkah-langkah pembuatan kabel LAN dengan lebih mudah.</p>
+    </div>
+  </div>
+</section>
+
+<!-- IDENTITAS -->
+<section id="identitas">
+  <div class="container">
+    <div class="section-title">
+      <h2>Identitas</h2>
+      <p>Identitas pembuat website</p>
+    </div>
+    <div class="identity-card">
+      <div class="identity-header">
+        <div class="profile-icon">👩🏻‍💻</div>
+        <h3>Identitas Mahasiswa</h3>
+      </div>
+      <div class="identity-list">
+        <div class="identity-item"><strong>Nama</strong><span>Allays Octri Cantikha</span></div>
+        <div class="identity-item"><strong>NIM</strong><span>062640723217</span></div>
+        <div class="identity-item"><strong>Kelas</strong><span>1 TIB</span></div>
+        <div class="identity-item"><strong>Program Studi</strong><span>D4 Teknologi Informatika Multimedia Digital</span></div>
+        <div class="identity-item"><strong>Jurusan</strong><span>Teknik Komputer</span></div>
+        <div class="identity-item"><strong>Mata Kuliah</strong><span>Jaringan Komputer</span></div>
+        <div class="identity-item"><strong>Dosen Pengampu</strong><span>Dr. Ali Firdaus, S.Kom, M.Kom.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POWERPOINT -->
+<section id="powerpoint">
+  <div class="container">
+    <div class="section-title">
+      <h2>Preview PowerPoint</h2>
+      <p>Presentasi praktikum ditampilkan langsung dari file di repo</p>
+    </div>
+    <div class="upload-card">
+      <div class="upload-area">
+        <div class="upload-icon">📊</div>
+        <h3>Ganti File (Opsional)</h3>
+        <p>Pilih file PPT, PPTX, atau PDF untuk menampilkan file lain sementara.</p>
+        <label for="pptInput" class="file-label">Pilih File</label>
+        <input type="file" id="pptInput" accept=".ppt,.pptx,.pdf">
+        <div class="file-name" id="pptName"></div>
+      </div>
+      <div class="preview-box" id="pptPreview">
+        <div class="empty-preview">
+          <div style="font-size:50px;">📑</div>
+          <p>Memuat presentasi...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO -->
+<section id="video">
+  <div class="container">
+    <div class="section-title">
+      <h2>Video Tutorial</h2>
+      <p>Dokumentasi pembuatan dan pengujian kabel LAN Cross Over</p>
+    </div>
+    <div class="video-grid">
+      <div class="video-card">
+        <h3>01 — Merangkai Kabel LAN</h3>
+        <p>Proses pembuatan kabel LAN Cross Over</p>
+        <div class="video-preview">
+          <video controls preload="metadata" src="video01.mp4.mp4">Browser tidak mendukung pemutaran video.</video>
+        </div>
+      </div>
+      <div class="video-card">
+        <h3>02 — Sharing Data Peer-to-Peer</h3>
+        <p>Pengujian dan berbagi data antar dua komputer</p>
+        <div class="video-preview">
+          <video controls preload="metadata" src="video02.mp4.mp4">Browser tidak mendukung pemutaran video.</video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INFORMASI -->
+<section id="informasi">
+  <div class="container">
+    <div class="section-title">
+      <h2>Tentang Kabel LAN Cross Over</h2>
+      <p>Komponen yang digunakan dalam pembuatan kabel LAN</p>
+    </div>
+    <div class="info-grid">
+      <div class="info-card"><div class="icon">🔌</div><h4>Konektor</h4><p>RJ45 digunakan sebagai konektor pada ujung kabel.</p></div>
+      <div class="info-card"><div class="icon">〰️</div><h4>Kabel</h4><p>Kabel UTP digunakan sebagai media penghantar jaringan.</p></div>
+      <div class="info-card"><div class="icon">🔀</div><h4>Standar</h4><p>Menggunakan kombinasi standar T568A dan T568B.</p></div>
+      <div class="info-card"><div class="icon">🔎</div><h4>Pengujian</h4><p>LAN Tester digunakan untuk menguji koneksi kabel.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <strong>© 2026 Allays-LAN</strong>
+  <p>Dokumentasi Kabel LAN Cross Over</p>
+  <p>Dibuat sebagai media pembelajaran dan dokumentasi tugas.</p>
+</footer>
+
+<button id="topBtn" aria-label="Kembali ke atas" onclick="scrollToTop()">↑</button>
+
+<script>
+/* ===== POWERPOINT: default dari repo ===== */
+const PPT_FILE = "presentasi.pptx.pdf";
+const pptInput = document.getElementById("pptInput");
+const pptPreview = document.getElementById("pptPreview");
+const pptName = document.getElementById("pptName");
+
+function showRepoPPT() {
+    pptPreview.innerHTML = '<iframe src="' + PPT_FILE + '" title="Preview PowerPoint" loading="lazy" allowfullscreen></iframe>';
+    pptName.innerHTML = 'File: ' + PPT_FILE + ' · <a href="' + PPT_FILE + '" download>Unduh PDF</a>';
+}
+showRepoPPT();
+
+/* ===== POWERPOINT: upload manual (opsional) ===== */
+pptInput.addEventListener("change", function () {
+    const file = this.files[0];
+    if (!file) return;
+
+    const ext = file.name.split(".").pop().toLowerCase();
+    if (!["ppt", "pptx", "pdf"].includes(ext)) {
+        alert("Format file tidak didukung. Silakan pilih PPT, PPTX, atau PDF.");
+        this.value = "";
+        return;
+    }
+
+    pptName.textContent = "File: " + file.name;
+    const url = URL.createObjectURL(file);
+
+    if (ext === "pdf") {
+        pptPreview.innerHTML = '<iframe src="' + url + '" title="Preview PowerPoint"></iframe>';
+    } else {
+        pptPreview.innerHTML =
+            '<div class="empty-preview">' +
+            '<div style="font-size:60px;">📊</div>' +
+            '<h3 style="color:white;margin:15px 0;"></h3>' +
+            '<p>File PowerPoint berhasil dipilih.</p>' +
+            '<a href="' + url + '" target="_blank" class="btn btn-primary" style="margin-top:15px;">Buka File PowerPoint</a>' +
+            '<p style="margin-top:15px;font-size:12px;">Preview langsung PPT/PPTX bergantung pada dukungan browser.</p>' +
+            '</div>';
+        pptPreview.querySelector("h3").textContent = file.name;
+    }
+});
+
+/* ===== BACK TO TOP ===== */
+const topBtn = document.getElementById("topBtn");
+window.addEventListener("scroll", function () {
+    topBtn.style.display = window.scrollY > 400 ? "block" : "none";
+});
+function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+/* ===== SMOOTH SCROLL ===== */
+document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+    link.addEventListener("click", function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute("href"));
+        if (target) target.scrollIntoView({ behavior: "smooth" });
+    });
+});
+</script>
+
+</body>
+</html>
